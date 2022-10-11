@@ -11,7 +11,7 @@
 	    <div class="card-body">
 	    	<div class="table-responsive">
 		        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		          <thead>
+				<thead>
 		            <tr>
 		              <th>User</th>
 		              <th>Date</th>
@@ -20,8 +20,15 @@
 		              <th class="text-right">Actions</th>
 		            </tr>
 		          </thead>
-                  
-		          <tbody>
+				  <tfoot>
+		            <tr>
+					 
+		              <th colspan="2" class="text-right">Total : </th>
+		              <th  colspan="1"> {{ $user->payments()->sum('amount') }} </th>
+		              <th colspan="2"></th>
+		            </tr>
+		          </tfoot>
+		        <tbody>
 		          	@foreach ($user->payments as $payment)
 			            <tr>
 			              <td> {{ $user->name }} </td>
@@ -29,14 +36,11 @@
 			              <td> {{ $payment->amount }} </td>
 			              <td> {{ $payment->note }} </td>
 			              <td class="text-right">
-			              	<form method="POST" action=" {{ route('users.destroy', ['user' => $user->id]) }} ">
-			              		<a class="btn btn-primary btn-sm" href="{{ route('users.show', ['user' => $user->id]) }}"> 
-				              	 	<i class="fa fa-eye"></i> 
-				              	</a>
+						  <form method="POST" action=" {{ route('user.payments.destroy', ['id' => $user->id, 'payment_id' => $payment->id]) }} ">
 			              		@csrf
 			              		@method('DELETE')
 			              		<button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"> 
-			              			<i class="fa fa-trash"></i>  
+			              			<i class="fa fa-trash"> Delete</i>  
 			              		</button>	
 			              	</form>
 			              </td>
@@ -48,6 +52,53 @@
 	    </div>
 
   	</div>
-  	
+
+	<!------ Model for new payments-------------->
+
+		<!-- Modal -->
+		<div class="modal fade" id="newPayment" tabindex="-1" role="dialog" aria-labelledby="newPaymentLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		{!! Form::open(['route' => ['user.payments.store' , $user->id],'method' => 'post']) !!}
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="newPaymentLabel">New Payment</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+ 
+                <div class="form-group row">
+                    <label for="date" class="col-sm-4 col-form-label">Date <span class="text-danger"> * </span></label>
+                    <div class="col-sm-10">
+                    {{ Form::date ('date' ,NULL,[ 'class'=>'form-control','id'=>'date','placeholder'=>' Date' , 'required']) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="amount" class="col-sm-4 col-form-label">Amount<span class="text-danger"> * </span></label>
+                    <div class="col-sm-10">
+                    {{ Form::text ('amount' ,NULL,[ 'class'=>'form-control','id'=>'amount','placeholder'=>'Amount' , 'required']) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="note" class="col-sm-4 col-form-label">Note</label>
+                    <div class="col-sm-10">
+                    {{ Form::textarea ('note' ,NULL,[ 'class'=>'form-control','id'=>'note', 'rows'=>'3' ,'placeholder'=>'Note']) }}
+                    </div>
+                </div>
+
+			</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+
+			{!! Form::close() !!}
+		</div>
+		</div>
 
 @stop
