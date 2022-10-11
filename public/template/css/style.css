@@ -11,3 +11,9 @@
     height: 70px;
     background: #3a4040;
 }
+
+.bg-login-image {
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
