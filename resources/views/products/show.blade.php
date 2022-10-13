@@ -18,7 +18,7 @@
 
         <div class="row clearfix justify-content-md-center">
             <div class="col-md-12">
-                <table class="table table-success">
+                <table class="table table-bordered table-Light">
                     <tr>
                         <th>Group :</th>
                         <td> {{ $product->category->title}}</td>

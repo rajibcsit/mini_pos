@@ -52,9 +52,17 @@
 							Edit
 							</a>
 
-		              		@csrf
-		              		@method('DELETE')
-		              		<button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete  </button>	
+							@if(
+			              		$user->sales()->count() == 0 
+			              		&& $user->purchases()->count() == 0
+			              		&& $user->receipts()->count() == 0
+			              		&& $user->payments()->count() == 0
+			              	)
+								@csrf
+								@method('DELETE')
+								<button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete  </button>
+								
+							@endif	
 		              	</form>
 		              </td>
 		            </tr>
