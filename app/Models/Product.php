@@ -13,4 +13,18 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+
+     /**
+     * Geating array for Product option
+     */
+
+    public static function arrayForSelect(){
+        $array = [];
+        $products = Product::all();
+        foreach ( $products as $product){
+            $array[$product->id] = $product->title;
+          }
+          return $array;
+    }
 }
