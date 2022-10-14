@@ -2,8 +2,6 @@
 
 @section('main_content')
 
-	
-
 @include('users.user_layout_content')
 
 @stop

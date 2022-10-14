@@ -12,7 +12,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('dashboard')}}">
                 <div class="sidebar-brand-icon">
-                    <img class="img-profile "src="template/img/tw_1.png">
+                    <img class="img-profile" src="template/img/tw_1.png">
                 </div>
                 <div class="sidebar-brand-text mx-3"> TwitSoft</sup></div>
             </a>

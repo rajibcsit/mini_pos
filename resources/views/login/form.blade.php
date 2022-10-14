@@ -25,13 +25,17 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-login-image">
-              <img class="bg-login-image"
+               <img class="bg-login-image"
                     src="{{asset ('template/img/login.png')}}">
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <div>
+                    <img class="top-login-image"
+                         src="{{asset ('template/img/tw_1.png')}}">
+                    </div>
+                    <h1 class="h4 text-web mb-4">Welcome <strong> TwitSoft </strong> </h1>
                   </div>
                   {!! Form::open([ 'route' => 'login.confirm', 'method' => 'post' ]) !!}
                     
