@@ -12,6 +12,7 @@ use App\Http\Controllers\UserPaymentsController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductsStockController;
 
 use App\Http\Controllers\Auth\loginController;
 
@@ -84,6 +85,7 @@ Route::delete('users/{id}/payments/{payment_id}' ,						[UserPaymentsController 
 Route::resource('categories',CategoriesController::class,['except'=> ['show'] ]);
 
 Route::resource('products',ProductsController::class);
+Route::get('stocks'	,																					[ProductsStockController::class, 'index'])->name('stocks');
 
 });
 
