@@ -22,7 +22,7 @@
 	    </div>
 	    <div class="card-body">
         <div class="row justify-content-md-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
 
                 @if ($mode == 'edit')
                     {!! Form::model($product, ['route' => ['products.update',$product->id],'method' => 'put']) !!}
@@ -32,36 +32,43 @@
             
                 <div class="form-group row">
                     <label for="group" class="col-sm-2 col-form-label">Category <span class="text-danger"> * </span></label>
-                    <div class="col-sm-10">
+                    <div class="col-md-8">
                     {{ Form::select('category_id', $categories ,NULL,[ 'class'=>'form-control','id'=>'group','placeholder'=>'Select Category']) }}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title <span class="text-danger"> * </span></label>
-                    <div class="col-sm-10">
+                    <div class="col-md-8">
                     {{ Form::text ('title' ,NULL,[ 'class'=>'form-control','id'=>'title','placeholder'=>'Enter Title']) }}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Description <span class="text-danger"> * </span></label>
-                    <div class="col-sm-10">
+                    <div class="col-md-8">
                     {{ Form::textarea ('description' ,NULL,[ 'class'=>'form-control','id'=>'description','placeholder'=>'Enter Description']) }}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="cost_price" class="col-sm-2 col-form-label">Cost Price </label>
-                    <div class="col-sm-10">
+                    <div class="col-md-8">
                     {{ Form::text ('cost_price' ,NULL,[ 'class'=>'form-control','id'=>'cost_price','placeholder'=>'Enter Cost Price']) }}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="price" class="col-sm-2 col-form-label">Sale Price</label>
-                    <div class="col-sm-10">
+                    <div class="col-md-8">
                     {{ Form::text ('price' ,NULL,[ 'class'=>'form-control','id'=>'sale_price','placeholder'=>'Enter Sale  Price']) }}
+                    </div>
+                </div>
+
+								<div class="form-group row">
+                    <label for="group" class="col-sm-2 col-form-label">Has Stock </label>
+                    <div class="col-md-8">
+										{{ Form::select('has_stock', [ '1'=> 'Yes', '0' => "No" ], NULL, [ 'class'=>'form-control', 'id' => 'group' ]) }}
                     </div>
                 </div>
 
