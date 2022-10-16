@@ -56,34 +56,34 @@
                         @endforeach
                     </tbody>
 
-                    <tr>
-	    				<th colspan="4" class="text-right"> Total: </th>
-	    				<th colspan="1" class="text-right"> {{ $totalPayable  }} </th>
-                        <th colspan="1"></th>
+             <tr>
+								<th colspan="4" class="text-right"> Total: </th>
+								<th colspan="1" class="text-right"> {{ $totalPayable  }} </th>
+								<th colspan="1"></th>
 	    			</tr>
 
-                    <p class="text-right">
-                        <button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#newProduct">
-                                <i class="fa fa-plus "></i> Add Product 
-                        </button>
-                    </p>
+								<p class="text-right">
+										<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#newProduct">
+											<i class="fa fa-plus "></i> Add Product 
+										</button>
+								</p>
 
-                    <p class="text-right">
-                        <button class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#newPaymentForInvoice">
-                                <i class="fa fa-plus "></i> Add Payment 
-                        </button>
-                    </p>
+								<p class="text-right">
+										<button class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#newPaymentForInvoice">
+											<i class="fa fa-plus "></i> Add Payment 
+										</button>
+								</p>
 
 					<tr>
 	    				<th colspan="4" class="text-right"> Paid: </th>
 	    				<th colspan="1" class="text-right"> {{ $totalPaid  }} </th>
-                        <th colspan="1"></th>
+              <th colspan="1"></th>
 	    			</tr>
 
 					<tr>
 	    				<th colspan="4" class="text-right"> Due: </th>
 	    				<th colspan="1" class="text-right"> {{ $totalPayable - $totalPaid  }} </th>
-                        <th colspan="1"></th>
+              <th colspan="1"></th>
 	    			</tr>
 
                 </table>
@@ -93,14 +93,13 @@
 
 	</div>
 
-    {{-- Modal For Add new Product --}}
-
+	{{-- Modal For Add new Product --}}
 	<div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-labelledby="newProductModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		  	{!! Form::open([ 'route' => ['user.purchases.add_item', ['id' => $user->id, 'invoice_id' => $invoice->id] ], 'method' => 'post' ]) !!}
 		    <div class="modal-content">
 		      	<div class="modal-header">
-		        	<h5 class="modal-title" id="newProductModalLabel">Add New Product </h5>
+		        	<h5 class="modal-title" id="newProductModalLabel"> Add New Product </h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          	<span aria-hidden="true">&times;</span>
 			        </button>
@@ -117,14 +116,14 @@
 					<div class="form-group row">
 					    <label for="price" class="col-sm-3 col-form-label  text-right">Unite Price <span class="text-danger">*</span> </label>
 					    <div class="col-sm-9">
-					      	{{ Form::text('price', NULL, [ 'class'=>'form-control', 'id' => 'price', 'placeholder' => 'Unite Price', 'required' ]) }}
+					      	{{ Form::text('price', NULL, [ 'class'=>'form-control', 'id' => 'price', 'onkeyup' => 'getTotal()', 'placeholder' => 'Unite Price', 'required' ]) }}
 					    </div>
 					</div>
 
 					<div class="form-group row">
 					    <label for="quantity" class="col-sm-3 col-form-label  text-right">Quantity <span class="text-danger">*</span> </label>
 					    <div class="col-sm-9">
-					      	{{ Form::text('quantity', NULL, [ 'class'=>'form-control', 'id' => 'quantity', 'placeholder' => 'Quantity', 'required' ]) }}
+					      	{{ Form::text('quantity', NULL, [ 'class'=>'form-control', 'id' => 'quantity', 'onkeyup' => 'getTotal()', 'placeholder' => 'Quantity', 'required' ]) }}
 					    </div>
 					</div>
 
@@ -147,51 +146,60 @@
 		 </div>
 	</div>
 
-	{{-- Modal For  new Payment for invoice --}}
 
-	<div class="modal fade" id="newPaymentForInvoice" tabindex="-1" role="dialog" aria-labelledby="newPaymentForInvoiceLabel" aria-hidden="true">
+	{{-- New Receipt For Invoice  --}}
+	<div class="modal fade" id="newPaymentForInvoice" tabindex="-1" role="dialog" aria-labelledby="newPaymentForInvoiceModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-		{!! Form::open(['route' => [ 'user.payments.store' , [$user->id, $invoice->id] ],'method' => 'post']) !!}
-			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="newPaymentForInvoiceLabel">New Payment For Invoice</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
- 
-                <div class="form-group row">
-                    <label for="date" class="col-sm-4 col-form-label">Date <span class="text-danger"> * </span></label>
-                    <div class="col-sm-10">
-                    {{ Form::date ('date' ,NULL,[ 'class'=>'form-control','id'=>'date','placeholder'=>' Date' , 'required']) }}
-                    </div>
-                </div>
+		  	{!! Form::open([ 'route' => [ 'user.payments.store', [$user->id, $invoice->id] ], 'method' => 'post' ]) !!}
+		    <div class="modal-content">
+		    	<div class="modal-header">
+		        	<h5 class="modal-title" id="newPaymentForInvoiceModalLabel"> New Payment For This Invoice </h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          	<span aria-hidden="true">&times;</span>
+			        </button>
+		    	</div>
+			    <div class="modal-body">	
+						  
+					<div class="form-group row">
+						<label for="date" class="col-sm-3 col-form-label"> Date <span class="text-danger">*</span> </label>
+					    <div class="col-sm-9">
+					     	{{ Form::date('date', NULL, [ 'class'=>'form-control', 'id' => 'date', 'placeholder' => 'Date', 'required' ]) }}
+					    </div>
+					</div>
 
-                <div class="form-group row">
-                    <label for="amount" class="col-sm-4 col-form-label">Amount<span class="text-danger"> * </span></label>
-                    <div class="col-sm-10">
-                    {{ Form::text ('amount' ,NULL,[ 'class'=>'form-control','id'=>'amount','placeholder'=>'Amount' , 'required']) }}
-                    </div>
-                </div>
+					<div class="form-group row">
+					    <label for="amount" class="col-sm-3 col-form-label">Amount <span class="text-danger">*</span>  </label>
+					    <div class="col-sm-9">
+					      {{ Form::text('amount', NULL, [ 'class'=>'form-control', 'id' => 'amount', 'placeholder' => 'Amount', 'required' ]) }}
+					    </div>
+					</div>
 
-                <div class="form-group row">
-                    <label for="note" class="col-sm-4 col-form-label">Note</label>
-                    <div class="col-sm-10">
-                    {{ Form::textarea ('note' ,NULL,[ 'class'=>'form-control','id'=>'note', 'rows'=>'3' ,'placeholder'=>'Note']) }}
-                    </div>
-                </div>
-
-			</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</div>
-
-			{!! Form::close() !!}
+					<div class="form-group row">
+					    <label for="note" class="col-sm-3 col-form-label">Note </label>
+					    <div class="col-sm-9">
+					      {{ Form::textarea('note', NULL, [ 'class'=>'form-control', 'id' => 'note', 'rows' => '3', 'placeholder' => 'Note' ]) }}
+					    </div>
+					</div>
+						  
+			    	</div>
+			      	<div class="modal-footer">
+			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        	<button type="submit" class="btn btn-primary">Submit</button>	
+			      	</div>
+		    	</div>
+		    {!! Form::close() !!}
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function getTotal() {
+			var price 		= document.getElementById("price").value;
+			var quantity 	= document.getElementById("quantity").value;
+			if ( price && quantity ) {
+				var total = price * quantity;
+				document.getElementById("total").value = total;
+			}
+		}
+	</script>
 
 @stop

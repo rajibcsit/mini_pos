@@ -16,7 +16,8 @@ use App\Models\PurchaseItem;
 class UserPurchasesController extends Controller
 {
     public function __construct()
-	{
+	{   
+        parent::__construct();
 		$this->data['tab_menu'] = 'purchases';
 	}
 
@@ -40,8 +41,7 @@ class UserPurchasesController extends Controller
 
 	 /**
      * A single invoice 
-     * @param  User $user_id  
-     * @param  PurchaseInvoice $invoice_id
+     
      */
 
 	public function invoice( $user_id , $invoice_id)
@@ -57,9 +57,7 @@ class UserPurchasesController extends Controller
 	}
 	/**
      * Add item to purchase invoice
-     * @param InvoiceProductRequest $request 
-     * @param User                $user_id 
-     * @param PurchaseInvoice     $invoice_id
+   
      */
 
 	public function addItem(InvoiceProductRequest $request, $user_id , $invoice_id )
@@ -78,9 +76,7 @@ class UserPurchasesController extends Controller
 
 	/**
      * Delete a item form purchase invoice
-     * @param  User             $user_id 
-     * @param  PurchaseInvoice  $invoice_id
-     * @param  PurchaseItem     $item_id
+   
      */
     public function destroyItem($user_id, $invoice_id, $item_id)
     {
@@ -93,8 +89,7 @@ class UserPurchasesController extends Controller
 
     /**
      * Delete a purchase invoice
-     * @param  User             $user_id 
-     * @param  PurchaseInvoice  $invoice_id
+     
      */
     public function destroy($user_id, $invoice_id)
     {

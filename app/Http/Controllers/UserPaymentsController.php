@@ -12,7 +12,8 @@ use App\Models\Payment;
 class UserPaymentsController extends Controller
 {
     public function __construct()
-	{
+	{   
+        parent::__construct();
 		$this->data['tab_menu'] = 'payments';
 	}
 
@@ -26,9 +27,9 @@ class UserPaymentsController extends Controller
 
 	public function store(PaymentRequest $request, $user_id, $invoice_id=null)
     {
-    	$formData 				= $request->all();
+    	$formData 						= $request->all();
     	$formData['user_id'] 	= $user_id;
-			$formData['admin_id'] 	= Auth::id();
+		$formData['admin_id'] 	= Auth::id();
 
 		if ($invoice_id) {
             $formData['purchase_invoice_id']   = $invoice_id;

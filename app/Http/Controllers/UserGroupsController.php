@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Session;
 
 class UserGroupsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->data['main_manu']    = 'Users';
+        $this->data['sub_manu']     = 'Groups';
+    }
+
     public function index()
     {
         $this->data['groups']= Group::all();
@@ -17,7 +24,7 @@ class UserGroupsController extends Controller
 
     public function create()
     {
-        return view('groups.create');
+        return view('groups.create',$this->data);
     }
 
     public function store( Request $request)
