@@ -7,6 +7,7 @@ use App\Http\Controllers\UserSalesController;
 use App\Http\Controllers\UserPurchasesController;
 use App\Http\Controllers\UserReceiptsController;
 use App\Http\Controllers\UserPaymentsController;
+use App\Http\Controllers\UserReportsController;
 
 
 
@@ -20,6 +21,7 @@ use App\Http\Controllers\Reports\SaleReportController;
 use App\Http\Controllers\Reports\PurchaseReportController;
 use App\Http\Controllers\Reports\PaymentsReportController;
 use App\Http\Controllers\Reports\ReceiptReportController;
+use App\Http\Controllers\Reports\DayReportsController;
 
 
 use App\Http\Controllers\Auth\loginController;
@@ -59,6 +61,8 @@ Route::resource('users',																		 UsersController::class);
 
 Route::get('users/{id}/sales' ,															 [UserSalesController::class, 'index'])->name('user.sales');
 
+Route::get('users/{id}/reports' ,													   [UserReportsController::class, 'reports'])->name('user.reports');
+
 Route::post('users/{id}/invoices' ,													 [UserSalesController::class, 'createInvoice'])->name('user.sales.store');
 Route::get('users/{id}/invoices/{invoice_id}',							 [UserSalesController::class, 'invoice'])->name('user.sales.invoice_details');
 Route::delete('users/{id}/invoices/{invoice_id}', 					 [UserSalesController::class, 'destroy'])->name('user.sales.destroy');
@@ -93,6 +97,7 @@ Route::get('reports/sales',																	[SaleReportController::class, 'index
 Route::get('reports/purchases',															[PurchaseReportController::class, 'index'])->name('reports.purchases');
 Route::get('reports/payments',															[PaymentsReportController::class, 'index'])->name('reports.payments');
 Route::get('reports/receipts',															[ReceiptReportController::class, 'index'])->name('reports.receipts');
+Route::get('reports/days',																	[DayReportsController::class, 'index'])->name('reports.days');
 
 });
 
