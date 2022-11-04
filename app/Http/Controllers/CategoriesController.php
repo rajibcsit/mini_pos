@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CategoryRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-
 use App\Models\Category;
+use Illuminate\Http\Request;
+
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
@@ -24,7 +24,7 @@ class CategoriesController extends Controller
     {
         $this->data['categories'] = Category::all();
 
-        return view('category.categories',$this->data);
+        return view('category.categories', $this->data);
     }
 
     /**
@@ -33,7 +33,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $this->data ['headline'] ='Add New Category';
+        $this->data['headline'] = 'Add New Category';
         $this->data['mode']       = 'create';
         return view('category.form', $this->data);
     }
@@ -44,18 +44,18 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-       
+
         $formData = $request->all();
 
-       if(Category::create($formData) ) {
-        Session::flash('message', 'Category Added Successfuly');
+        if (Category::create($formData)) {
+            Session::flash('message', 'Category Added Successfuly');
+        }
+
+        return redirect()->to('categories');
     }
 
-      return redirect()->to('categories');
-    }
 
-    
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -63,11 +63,11 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $this->data ['category']     = Category::findOrFail($id);
-       $this->data['mode']       = 'edit';
-       $this->data['headline']   = 'Update Category';
+        $this->data['category']     = Category::findOrFail($id);
+        $this->data['mode']       = 'edit';
+        $this->data['headline']   = 'Update Category';
 
-       return view('category.form',$this->data);
+        return view('category.form', $this->data);
     }
 
     /**
@@ -77,13 +77,13 @@ class CategoriesController extends Controller
     {
 
         $category         = Category::find($id);
-        $category->title  = $request->get ('title');
-       
-        if($category-> save() ) {
-         Session::flash('message', 'Category Updated Successfuly');
-     }
- 
-       return redirect()->to('categories');
+        $category->title  = $request->get('title');
+
+        if ($category->save()) {
+            Session::flash('message', 'Category Updated Successfuly');
+        }
+
+        return redirect()->to('categories');
     }
 
     /**
@@ -91,10 +91,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        if(Category::find($id)->delete() ) {
+        if (Category::find($id)->delete()) {
             Session::flash('message', 'Category Deleted Successfuly');
         }
-    
-          return redirect()->to('categories');
+
+        return redirect()->to('categories');
     }
 }

@@ -25,6 +25,7 @@
     width: 100%;
     background-position: center;
     background-size: cover;
+    margin-top: 100px;
 }
 .top-login-image {
     width: 100%;
@@ -43,4 +44,23 @@
 .new_product_add {
     display: flex;
     justify-items: right;
+}
+
+.dasbord-icon {
+    width: 35px;
+    height: 30px;
+}
+
+.signup,
+a {
+    color: #418562;
+    text-decoration: none !important;
+    font-weight: 600;
+    margin-left: -10px;
+}
+.col-auto.justify-content-center {
+    margin-left: 40px;
+}
+.profile {
+    padding: 10px 40px;
 }
