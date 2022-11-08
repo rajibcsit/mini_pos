@@ -54,6 +54,10 @@
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <a href="{{ route('forget.password') }}">Forgot your password? </a>
+                </div>
+
                 <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
 
                 <div class="row mt-4">

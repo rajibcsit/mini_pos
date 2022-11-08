@@ -24,6 +24,7 @@ use App\Http\Controllers\UserPurchasesController;
 use App\Http\Controllers\Auth\RegisteredController;
 
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Reports\DayReportsController;
 use App\Http\Controllers\Reports\SaleReportController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -52,6 +53,11 @@ Route::get('register', [RegisteredController::class, 'index'])->name('register')
 Route::post('custom-registration', [RegisteredController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [RegisteredController::class, 'signOut'])->name('signout');
 
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
 Route::group(['middleware' => 'prevent-back-history'], function () {
   Route::group(['middleware' => 'auth'], function () {
     // Auth::routes();
@@ -61,9 +67,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     Route::get('logout',                                         [loginController::class, 'logout'])->name('logout');
 
-    Route::get('profile',                                   [UserProfileController::class, 'index'])->name('profile.show');
-    Route::get('profile/edit',                              [UserProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('profile/update',                                  [UserProfileController::class, 'store'])->name('profile.update');
+    Route::get('profile',                                        [UserProfileController::class, 'index'])->name('profile.show');
+    Route::get('profile/edit',                                   [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('profile/update',                                [UserProfileController::class, 'store'])->name('profile.update');
 
 
     Route::get('change-password',                                [ChangePasswordController::class, 'index']);

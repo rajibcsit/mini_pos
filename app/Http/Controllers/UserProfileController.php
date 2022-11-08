@@ -48,7 +48,7 @@ class UserProfileController extends Controller
             }
             $authUser['image'] = Storage::putFile('profileImage', $request->file('image'));
         }
-        // return  $authUser['image'];
+
 
         $authUser->name = $request->name;
         $authUser->email = $request->email;
