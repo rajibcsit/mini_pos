@@ -25,7 +25,7 @@
           <!-- Nested Row within Card Body -->
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-              <img class="bg-login-image" src="{{asset ('template/img/login.svg')}}">
+              <img class="bg-login-image" src="{{asset ('template/img/login.png')}}">
             </div>
             <div class="col-lg-6">
               <div class="p-5">
@@ -54,7 +54,7 @@
                   </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group reset_password">
                   <a href="{{ route('forget.password') }}">Forgot your password? </a>
                 </div>
 

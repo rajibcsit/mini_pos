@@ -30,6 +30,10 @@
 .top-login-image {
     width: 100%;
 }
+.top-logo-image {
+    width: 100%;
+    margin-bottom: -40px;
+}
 .text-web {
     color: #7f870a !important;
 }
@@ -63,4 +67,27 @@ a {
 }
 .profile {
     padding: 10px 40px;
+}
+.reset_password {
+    margin-left: 13px;
+}
+.reset_password a {
+    color: #e9710a;
+}
+.reset_form {
+    margin-inline-start: auto;
+}
+.navbar-dark .navbar-brand {
+    color: #fff;
+}
+.navbar .navbar-brand {
+    height: 4.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    z-index: 1;
 }
