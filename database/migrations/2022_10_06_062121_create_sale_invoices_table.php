@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('admin_id')->nullable();
             $table->foreignId('user_id');
             $table->string('challan_no')->nullable();
-            $table->date('data');
+            $table->date('date');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
